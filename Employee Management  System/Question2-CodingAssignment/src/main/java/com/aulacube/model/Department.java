@@ -1,9 +1,14 @@
 package com.aulacube.model;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 public class Department {
@@ -11,7 +16,13 @@ public class Department {
 	@Id
 	private String departmentId;
 	private String departmentName;
+
+	@Column(name = "created_at")
+	@CreationTimestamp
 	private Timestamp createdAt;
+
+	@Column(name = "updated_at")
+	@UpdateTimestamp
 	private Timestamp updatedAt;
 	
 	public Department() {
@@ -59,11 +70,7 @@ public class Department {
 		this.updatedAt = updatedAt;
 	}
 
-	@Override
-	public String toString() {
-		return "Department [departmentId=" + departmentId + ", departmentName=" + departmentName + ", createdAt="
-				+ createdAt + ", updatedAt=" + updatedAt + "]";
-	}
+	
 
 	
 	

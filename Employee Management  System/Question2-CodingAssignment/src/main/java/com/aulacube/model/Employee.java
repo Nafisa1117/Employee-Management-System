@@ -1,13 +1,18 @@
 package com.aulacube.model;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 
 
@@ -25,9 +30,14 @@ public class Employee {
 	@JoinColumn(name = "department_id")
 	private Department department;
 	
-	private Timestamp createdAt;
-	private Timestamp updatedAt;
+	@Column(name = "created_at")
+    @CreationTimestamp
+    private Timestamp createdAt;
 	
+	@Column(name = "updated_at")
+	@UpdateTimestamp
+	private Timestamp updatedAt;
+	 
 	public Employee() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -101,11 +111,8 @@ public class Employee {
 		this.updatedAt = updatedAt;
 	}
 
-	@Override
-	public String toString() {
-		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
-	}
-	
+
+
 	
 
 }
